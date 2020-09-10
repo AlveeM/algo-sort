@@ -1,0 +1,124 @@
+.sidebar {
+  height: 100vh;
+  padding: 0 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #00284c;
+  width: 15%;
+  min-width: 250px;
+}
+
+.sliders {
+  color: lightsteelblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.sliders label {
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: Menlo, Consolas, monospace;
+  letter-spacing: 1.4px;
+  color: lightgray;
+}
+
+.sliders input {
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px; 
+  background: #04101f;
+  outline: none;
+  opacity: 0.7;
+  margin: 20px 0 30px 0;
+  transition: all 0.5s ease;
+  transition: background 0.7s ease;
+}
+
+.sliders input:disabled {
+  background: gray;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #42a5f5;
+  border: 2px solid #061629;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #42a5f5;
+  border: 2px solid #061629;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.sliders input:disabled::-webkit-slider-thumb {
+  background: gray;
+}
+
+.sliders input:disabled::-moz-range-thumb {
+  background: gray;
+}
+
+.animation-speed-slider {
+  direction: rtl;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.buttons button {
+  font-family: Menlo, Consolas, monospace;
+  width: 220px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  line-height: 1.8;
+  padding: 8px 3px;
+  border-radius: 20px;
+  background-color: #0b2239;
+  color: white;
+  outline: none;
+  border: 2px solid lightsteelblue;
+  margin: 10px 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.buttons button:hover {
+  background-color: #42a5f5;
+  color: #0b2239;
+  border: 2px solid #42a5f5;
+  transform: scale(1.05);
+}
+
+.buttons button:disabled {
+  background-color: lightslategray;
+  color: black;
+  border: 2px solid lightslategray;
+  transform: scale(1);
+}
