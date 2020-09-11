@@ -10,25 +10,3 @@
   text-align: center;
 }
 
-button {
-  font-family: Menlo, Consolas, monospace;
-  font-size: 1rem;
-  font-weight: 700;
-  width: 200px;
-  letter-spacing: 1.5px;
-  line-height: 1.8;
-  padding: 8px 3px;
-  border-radius: 20px;
-  background-color: #0b2239;
-  color: white;
-  outline: none;
-  border: 2px solid white;
-  margin: 10px 5px;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-}
-
-button:hover {
-  background-color: #42a5f5;
-  color: white;
-}
