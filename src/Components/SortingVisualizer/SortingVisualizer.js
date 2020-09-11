@@ -2,7 +2,7 @@ import React from 'react';
 import mergeSortAnimations from '../../sortingAlgorithms/mergeSort.js';
 import bubbleSortAnimations from '../../sortingAlgorithms/bubbleSort';
 import selectionSortAnimations from '../../sortingAlgorithms/selectionSort';
-import insertionSortAnimation from '../../sortingAlgorithms/insertionSort';
+import insertionSortAnimations from '../../sortingAlgorithms/insertionSort';
 import Sidebar from '../Sidebar/Sidebar';
 import VisualizerContainer from '../VisualizerContainer/VisualizerContainer.js';
 
@@ -22,12 +22,42 @@ export default class SortingVisualizer extends React.Component {
       array: [],
       arraySize: 100,
       animationSpeed: 200,
-      sorting: false
+      sorting: false,
+      userId: 1,
+      user: {
+        username: "link",
+        id: 1,
+      },
+      favorites: {
+        "bubble": false,
+        "selection": false,
+        "insertion": false,
+        "merge": false,
+        "quick": false,
+        "heap": false
+      },
+      algorithms: {
+        "bubble": 1,
+        "selection": 2,
+        "insertion": 3,
+        "merge": 4,
+        "quick": 5,
+        "heap": 6
+      }
     };
   }
 
   componentDidMount() {
     this.initializeArray();
+
+    fetch(`http://localhost:3000/users/${this.state.userId}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({
+          user: data.user,
+          favorites: data.favorites
+        })
+      })
   }
 
   bubbleSort = () => {
@@ -87,7 +117,7 @@ export default class SortingVisualizer extends React.Component {
   }
 
   insertionSort = () => {
-    const animations = insertionSortAnimation([...this.state.array]);
+    const animations = insertionSortAnimations([...this.state.array]);
     this.setState({ sorting: true });
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.querySelectorAll('.array-bar');
@@ -180,9 +210,17 @@ export default class SortingVisualizer extends React.Component {
     this.setState({ animationSpeed });
   }
 
+  toggleFavorite = (key) => {
+    this.setState(prevState => {
+      return {
+        favorites: { ...prevState.favorites, [key]: !prevState.favorites[key] }
+      }
+    })
+  }
+
   render() {
     const {array} = this.state;
-    const algorithms = {
+    const algorithmFunctions = {
       bubbleSort: this.bubbleSort,
       selectionSort: this.selectionSort,
       insertionSort: this.insertionSort,
@@ -196,11 +234,15 @@ export default class SortingVisualizer extends React.Component {
     return (
       <div className="app-container">
         <Sidebar 
-          algorithms={algorithms} 
+          algorithms={this.state.algorithms} 
+          userId = {this.state.user.id}
           sorting={this.state.sorting} 
-          resetArray={this.resetArray} 
+          resetArray={this.resetArray}
+          algorithmFunctions={algorithmFunctions} 
           updateArraySize = {this.updateArraySize}
-          updateAnimationSpeed={this.updateAnimationSpeed} />
+          updateAnimationSpeed={this.updateAnimationSpeed}
+          favorites={this.state.favorites}
+          toggleFavorite={this.toggleFavorite} />
         <VisualizerContainer array={array} colors={colors} scaleFactor={BAR_SCALE_FACTOR} />
       </div>
     );
