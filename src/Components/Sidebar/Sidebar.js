@@ -21,7 +21,11 @@ export default class Sidebar extends Component {
   }
 
   render() {
-    const { bubbleSort, selectionSort, insertionSort, mergeSort } = this.props.algorithms;
+    const { bubbleSort, 
+            selectionSort, 
+            insertionSort, 
+            heapSort, 
+            mergeSort } = this.props.algorithms;
 
     return (
       <div className="sidebar">
@@ -59,9 +63,8 @@ export default class Sidebar extends Component {
           <button disabled={this.props.sorting} onClick={() => bubbleSort()}>Bubble Sort</button>
           <button disabled={this.props.sorting} onClick={() => selectionSort()}>Selection Sort</button>
           <button disabled={this.props.sorting} onClick={() => insertionSort()}>Insertion Sort</button>
+          <button disabled={this.props.sorting} onClick={() => heapSort()}>Heap Sort</button>
           <button disabled={this.props.sorting} onClick={() => mergeSort()}>Merge Sort</button>
-          {/* <button disabled={this.props.sorting} onClick={() => mergeSort()}>Heap Dance</button>
-          <button disabled={this.props.sorting} onClick={() => mergeSort()}>Quick Dance</button> */}
         </div>
       </div>
     )

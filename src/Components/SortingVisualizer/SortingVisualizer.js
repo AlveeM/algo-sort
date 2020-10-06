@@ -1,8 +1,9 @@
 import React from 'react';
-import mergeSortAnimations from '../../sortingAlgorithms/mergeSort.js';
 import bubbleSortAnimations from '../../sortingAlgorithms/bubbleSort';
 import selectionSortAnimations from '../../sortingAlgorithms/selectionSort';
 import insertionSortAnimation from '../../sortingAlgorithms/insertionSort';
+import heapSortAnimations from '../../sortingAlgorithms/heapSort';
+import mergeSortAnimations from '../../sortingAlgorithms/mergeSort.js';
 import Sidebar from '../Sidebar/Sidebar';
 import VisualizerContainer from '../VisualizerContainer/VisualizerContainer.js';
 
@@ -111,6 +112,33 @@ export default class SortingVisualizer extends React.Component {
     }
   }
 
+  heapSort = () => {
+    const animations = heapSortAnimations([...this.state.array]);
+    this.setState({ sorting: true })
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.querySelectorAll('.array-bar');
+      const isColorChange = !animations[i][2];
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        const color = i % 2 === 0 ? SWAP_COLOR : BAR_COLOR;
+        let timerId = setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * this.state.animationSpeed);
+        TIMER_ARR.push(timerId);
+      } else {
+        let timerId = setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeight / BAR_SCALE_FACTOR}vh`;
+        }, i * this.state.animationSpeed);
+        TIMER_ARR.push(timerId);
+      }
+    }
+  }
+
   mergeSort = () => {
     const animations = mergeSortAnimations([...this.state.array]);
     this.setState({ sorting: true });
@@ -184,6 +212,7 @@ export default class SortingVisualizer extends React.Component {
       bubbleSort: this.bubbleSort,
       selectionSort: this.selectionSort,
       insertionSort: this.insertionSort,
+      heapSort: this.heapSort,
       mergeSort: this.mergeSort,
     }
     const colors = {
