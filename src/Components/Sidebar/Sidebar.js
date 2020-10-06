@@ -25,7 +25,7 @@ export default class Sidebar extends Component {
 
     return (
       <div className="sidebar">
-        <div className="app-name"><h1>Algo <br />Dance</h1></div>
+        <div className="app-name"><h1>Algo <br />Sort</h1></div>
         <div className="sliders">
           <div className="slider-div">
             <label htmlFor="array-size-slider">Array Size</label>
@@ -55,11 +55,11 @@ export default class Sidebar extends Component {
           </div>
         </div>
         <div className="buttons">
-          <button onClick={() => this.props.resetArray()}>New Dancers</button>
-          <button disabled={this.props.sorting} onClick={() => bubbleSort()}>Bubble Dance</button>
-          <button disabled={this.props.sorting} onClick={() => selectionSort()}>Selection Dance</button>
-          <button disabled={this.props.sorting} onClick={() => insertionSort()}>Insertion Dance</button>
-          <button disabled={this.props.sorting} onClick={() => mergeSort()}>Merge Dance</button>
+          <button onClick={() => this.props.resetArray()}>New Array</button>
+          <button disabled={this.props.sorting} onClick={() => bubbleSort()}>Bubble Sort</button>
+          <button disabled={this.props.sorting} onClick={() => selectionSort()}>Selection Sort</button>
+          <button disabled={this.props.sorting} onClick={() => insertionSort()}>Insertion Sort</button>
+          <button disabled={this.props.sorting} onClick={() => mergeSort()}>Merge Sort</button>
           {/* <button disabled={this.props.sorting} onClick={() => mergeSort()}>Heap Dance</button>
           <button disabled={this.props.sorting} onClick={() => mergeSort()}>Quick Dance</button> */}
         </div>
