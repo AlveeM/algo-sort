@@ -144,7 +144,7 @@ export default class SortingVisualizer extends React.Component {
     this.setState({ sorting: true });
     for (let i = 0; i < animations.length; i++) {
       const arrayBars = document.querySelectorAll('.array-bar');
-      const isColorChange = i % 3 !== 2;
+      const isColorChange = !animations[i][2]
       if (isColorChange) {
         const [barOneIdx, barTwoIdx] = animations[i];
         const barOneStyle = arrayBars[barOneIdx].style;
