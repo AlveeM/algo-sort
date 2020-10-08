@@ -3,7 +3,8 @@ import bubbleSortAnimations from '../../sortingAlgorithms/bubbleSort';
 import selectionSortAnimations from '../../sortingAlgorithms/selectionSort';
 import insertionSortAnimation from '../../sortingAlgorithms/insertionSort';
 import heapSortAnimations from '../../sortingAlgorithms/heapSort';
-import mergeSortAnimations from '../../sortingAlgorithms/mergeSort.js';
+import mergeSortAnimations from '../../sortingAlgorithms/mergeSort';
+import quickSortAnimations from '../../sortingAlgorithms/quickSort';
 import Sidebar from '../Sidebar/Sidebar';
 import VisualizerContainer from '../VisualizerContainer/VisualizerContainer.js';
 
@@ -166,6 +167,34 @@ export default class SortingVisualizer extends React.Component {
     }
   }
 
+  quickSort = () => {
+    const animations = quickSortAnimations([...this.state.array]);
+    // const animations = [[0,4],[0,4],[1,4],[1,4],[2,4],[2,4],[3,4],[3,4],[0,300,true],[4,100,true],[1,4],[1,4],[2,4],[2,4],[3,4],[3,4],[1,500,true],[3,200,true],[2,400,true],[4,300,true],[3,4],[3,4],[3,500,true],[4,400,true]];
+    this.setState({ sorting: true })
+    for (let i = 0; i < animations.length; i++) {
+      const arrayBars = document.querySelectorAll('.array-bar');
+      const isColorChange = !animations[i][2];
+      if (isColorChange) {
+        const [barOneIdx, barTwoIdx] = animations[i];
+        const barOneStyle = arrayBars[barOneIdx].style;
+        const barTwoStyle = arrayBars[barTwoIdx].style;
+        const color = i % 2 === 0 ? SWAP_COLOR : BAR_COLOR;
+        let timerId = setTimeout(() => {
+          barOneStyle.backgroundColor = color;
+          barTwoStyle.backgroundColor = color;
+        }, i * this.state.animationSpeed);
+        TIMER_ARR.push(timerId);
+      } else {
+        let timerId = setTimeout(() => {
+          const [barOneIdx, newHeight] = animations[i];
+          const barOneStyle = arrayBars[barOneIdx].style;
+          barOneStyle.height = `${newHeight / BAR_SCALE_FACTOR}vh`;
+        }, i * this.state.animationSpeed);
+        TIMER_ARR.push(timerId);
+      }
+    }
+  }
+
   initializeArray = () => {
     const array = [];
     for (let i = 0; i < this.state.arraySize; i++) {
@@ -214,6 +243,7 @@ export default class SortingVisualizer extends React.Component {
       insertionSort: this.insertionSort,
       heapSort: this.heapSort,
       mergeSort: this.mergeSort,
+      quickSort: this.quickSort,
     }
     const colors = {
       barColor: BAR_COLOR,

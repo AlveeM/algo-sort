@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import quickSort from '../../sortingAlgorithms/quickSort';
 import './Sidebar.css';
 
 export default class Sidebar extends Component {
@@ -25,7 +26,8 @@ export default class Sidebar extends Component {
             selectionSort, 
             insertionSort, 
             heapSort, 
-            mergeSort } = this.props.algorithms;
+            mergeSort,
+            quickSort } = this.props.algorithms;
 
     return (
       <div className="sidebar">
@@ -65,6 +67,7 @@ export default class Sidebar extends Component {
           <button disabled={this.props.sorting} onClick={() => insertionSort()}>Insertion Sort</button>
           <button disabled={this.props.sorting} onClick={() => heapSort()}>Heap Sort</button>
           <button disabled={this.props.sorting} onClick={() => mergeSort()}>Merge Sort</button>
+          <button disabled={this.props.sorting} onClick={() => quickSort()}>Quick Sort</button>
         </div>
       </div>
     )
