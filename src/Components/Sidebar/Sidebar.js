@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import quickSort from '../../sortingAlgorithms/quickSort';
 import './Sidebar.css';
 
 export default class Sidebar extends Component {
