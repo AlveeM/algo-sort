@@ -1,8 +1,6 @@
 export default function quickSortAnimations(arr) {
   const animations = [];
-  console.log(arr);
   quickSortHelper(arr, animations);
-  console.log(arr);
   return animations;
 }
 
